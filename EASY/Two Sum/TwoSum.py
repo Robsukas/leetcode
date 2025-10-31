@@ -1,19 +1,14 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        nums2 = nums[:]
-        index1 = 0
-        pop_count = 0
-        for i in nums:
-            nums2.pop(0)
-            pop_count += 1
-            index2 = 0
-            for j in nums2:
-                if i + j == target:
-                    return [index1, index2 + pop_count]
-                index2 += 1
-            index1 += 1
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_dict = {}
+        i = 0
+
+        for num in nums:
+            needed_num = target - num
+
+            if needed_num in num_dict.keys():
+                return [num_dict.get(needed_num), i]
+
+            num_dict[num] = i
+            i += 1
+        return False
